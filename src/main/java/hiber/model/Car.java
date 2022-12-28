@@ -7,6 +7,10 @@ import javax.persistence.*;
 public class Car {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "car_id")
+    private int carId;
+
     @Column(name = "series")
     private int series;
 
@@ -15,7 +19,8 @@ public class Car {
 
     public Car() {}
 
-    public Car(String model) {
+    public Car(int series, String model) {
+        this.series = series;
         this.model = model;
     }
 
@@ -35,4 +40,12 @@ public class Car {
         this.model = model;
     }
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carId=" + carId +
+                ", series=" + series +
+                ", model='" + model + '\'' +
+                '}';
+    }
 }

@@ -3,12 +3,8 @@ package hiber.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "spring")
+@Table(name = "users_spring")
 public class User {
-
-   @OneToOne
-   @JoinColumn(name = "series")
-   private Car car;
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +26,10 @@ public class User {
       this.lastName = lastName;
       this.email = email;
    }
+
+   @OneToOne(cascade = CascadeType.ALL)
+   @JoinColumn(name = "car_id")
+   private Car car;
 
    public Long getId() {
       return id;
@@ -62,4 +62,23 @@ public class User {
    public void setEmail(String email) {
       this.email = email;
    }
+
+   @Override
+   public String toString() {
+      return "User{" +
+              "id=" + id +
+              ", firstName='" + firstName + '\'' +
+              ", lastName='" + lastName + '\'' +
+              ", email='" + email + '\'' +
+              '}';
+   }
+
+   public Car getCar() {
+      return car;
+   }
+
+   public void setCar(Car car) {
+      this.car = car;
+   }
+
 }
