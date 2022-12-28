@@ -65,12 +65,9 @@ public class User {
 
    @Override
    public String toString() {
-      return "User{" +
-              "id=" + id +
-              ", firstName='" + firstName + '\'' +
-              ", lastName='" + lastName + '\'' +
-              ", email='" + email + '\'' +
-              '}';
+      return  "First Name = " + firstName + "\n" +
+              "Last Name = " + lastName + "\n" +
+              "Email = " + email;
    }
 
    public Car getCar() {

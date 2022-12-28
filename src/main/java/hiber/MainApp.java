@@ -6,6 +6,7 @@ import hiber.model.Car;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import javax.persistence.NoResultException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -56,16 +57,10 @@ public class MainApp {
 
       System.out.println("_______ Пользователь по серии и модели машины _______");
 
-      for (User user : users) {
-         try {
-            if (user.getCar().getSeries() != user2.getCar().getSeries() && user.getCar().getModel() != user2.getCar().getModel()) {
-            } else {
-               System.out.println("Id = " + user.getId());
-               System.out.println("First Name = " + user.getFirstName());
-               System.out.println("Last Name = " + user.getLastName());
-               System.out.println("Email = " + user.getEmail());
-            }
-         } catch (NullPointerException e) { }
+      try {
+         System.out.println(userService.userByCar(7, "model4"));
+      } catch (NoResultException e) {
+         System.out.println("Такого пользователя не существует.");
       }
       System.out.println("_____________________________________________________");
 
