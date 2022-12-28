@@ -23,11 +23,11 @@ public class MainApp {
 
       Car car1 = new Car(12, "model1");
       Car car2 = new Car(21, "model2");
-      Car car3 = new Car(7, "model3");
+      Car car4 = new Car(7, "model4");
 
       user1.setCar(car1);
       user2.setCar(car2);
-      user4.setCar(car3);
+      user4.setCar(car4);
 
       userService.add(user1);
       userService.add(user2);
@@ -35,17 +35,39 @@ public class MainApp {
       userService.add(user4);
 
       List<User> users = userService.listUsers();
+
+      System.out.println();
+      System.out.println("_______ Пользователи с машинами _______");
+      System.out.println();
+
       for (User user : users) {
-         System.out.println("Id = "+user.getId());
-         System.out.println("First Name = "+user.getFirstName());
-         System.out.println("Last Name = "+user.getLastName());
-         System.out.println("Email = "+user.getEmail());
          try {
-            System.out.println("Series = " + user.getCar().getSeries());
-            System.out.println("Model = " + user.getCar().getModel());
+            if (user.getCar().getModel() != null) {
+               System.out.println("Id = " + user.getId());
+               System.out.println("First Name = " + user.getFirstName());
+               System.out.println("Last Name = " + user.getLastName());
+               System.out.println("Email = " + user.getEmail());
+               System.out.println("Series = " + user.getCar().getSeries());
+               System.out.println("Model = " + user.getCar().getModel());
+               System.out.println();
+            }
          } catch (NullPointerException e) { }
-         System.out.println();
       }
+
+      System.out.println("_______ Пользователь по серии и модели машины _______");
+
+      for (User user : users) {
+         try {
+            if (user.getCar().getSeries() != user2.getCar().getSeries() && user.getCar().getModel() != user2.getCar().getModel()) {
+            } else {
+               System.out.println("Id = " + user.getId());
+               System.out.println("First Name = " + user.getFirstName());
+               System.out.println("Last Name = " + user.getLastName());
+               System.out.println("Email = " + user.getEmail());
+            }
+         } catch (NullPointerException e) { }
+      }
+      System.out.println("_____________________________________________________");
 
       context.close();
    }
